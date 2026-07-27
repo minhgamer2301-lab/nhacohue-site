@@ -87,7 +87,11 @@ html,body{margin:0;padding:0;background:var(--nen);}
 
 /* hàng thứ hai của thanh — ba tab, không JS. Margin âm bù padding của .in để
    vạch kẻ trên vẫn trải hết bề ngang màn như hồi nav còn nằm ngoài. */
-.tabs{grid-area:2/1/3/3;display:flex;gap:24px;align-items:stretch;
+/* align-self:stretch vì .bar>.in đặt align-items:center — không có nó thì hàng
+   tab cao 42px mà mỗi thẻ <a> chỉ cao 25px theo chữ, vùng chạm hụt (27/07).
+   Kéo stretch thì thẻ ăn hết chiều cao hàng, và gạch chân tab đang xem rơi
+   xuống đúng mép dưới thanh thay vì lửng lơ sát chữ. */
+.tabs{grid-area:2/1/3/3;display:flex;gap:24px;align-items:stretch;align-self:stretch;
       border-top:1px solid var(--vien);margin:0 -22px;padding:0 22px;}
 .tab{display:flex;align-items:center;font-size:15px;font-weight:600;
      text-decoration:none;color:var(--chu-phu);border-bottom:2px solid transparent;}
@@ -186,7 +190,11 @@ html,body{margin:0;padding:0;background:var(--nen);}
 .diachi dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:15px;}
 .diachi dt{color:var(--chu-phu);}
 .diachi dd{margin:0;}
-.diachi a.tel{color:var(--accent);text-decoration:none;font-weight:600;}
+/* Vùng chạm số điện thoại (27/07). Chữ chỉ cao 19px — ngón tay bấm trượt, mà đây
+   đúng là nút sinh tiền. Padding nới vùng bấm lên 43px, margin âm bù lại đúng
+   bằng ấy nên bảng địa chỉ không xê dịch một pixel nào. */
+.diachi a.tel{color:var(--accent);text-decoration:none;font-weight:600;
+              display:inline-block;padding:12px 6px;margin:-12px -6px;}
 
 .bg{border:1px solid var(--vien);border-radius:13px;background:var(--mat);
     margin-bottom:12px;overflow:hidden;}
@@ -258,7 +266,10 @@ html,body{margin:0;padding:0;background:var(--nen);}
 .chan{text-align:center;padding:34px 0 46px;color:var(--chu-phu);font-size:14px;}
 .chan img{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;}
 
-.dock{position:sticky;bottom:0;z-index:30;display:none;gap:9px;padding:10px 16px;
+/* Thanh cuối trang — KHÔNG dính đáy nữa (27/07). Thanh trên đã sticky và chở
+   đúng hai nút này rồi; dính thêm ở đáy chỉ ăn mất một dải màn điện thoại để
+   lặp lại cùng một cặp nút. Giữ nó nằm cuối luồng làm nút chốt khi khách đọc hết. */
+.dock{display:none;gap:9px;padding:10px 16px 24px;
       background:var(--nen);border-top:1px solid var(--vien);}
 .dock .btn{flex:1;justify-content:center;}
 
@@ -269,7 +280,7 @@ html,body{margin:0;padding:0;background:var(--nen);}
   .bai p{font-size:17px;}
 }
 @media (max-width:860px){
-  .bar>.in{grid-template-rows:54px 38px;}
+  .bar>.in{grid-template-rows:54px 44px;}   /* 44 = ngưỡng vùng chạm, xem .tabs */
   .tabs{gap:20px;}
   .tab{font-size:14px;}
   .hai{grid-template-columns:1fr;gap:14px;}
@@ -292,14 +303,21 @@ html,body{margin:0;padding:0;background:var(--nen);}
           display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:12px;}
   .hero-eye{display:block;margin:0 0 8px;font-size:11px;letter-spacing:1.2px;
             text-transform:uppercase;color:var(--accent);font-weight:600;}
-  .hero-t h1{font-size:25px;line-height:1.18;}
-  .hero-t p{margin:10px 0 0;font-size:13px;line-height:1.55;}
-  .hero-cta{flex-direction:column;gap:8px;margin-top:14px;}
-  .hero-cta .btn{width:100%;justify-content:center;padding:10px 8px;font-size:14px;}
-  .hero-tick{display:block;list-style:none;margin:14px 0 0;padding:0;}
-  .hero-tick li{font-size:12px;color:var(--chu-phu);margin-top:5px;}
+  .hero-t h1{font-size:26px;line-height:1.18;}
+  /* Cột trái gọt còn ba thứ: địa điểm · câu tiêu đề · giá (27/07). Bỏ dòng dẫn
+     "một bên bún đậu, một bên bánh xèo" — dải "Hai bếp" ngay dưới nói lại đúng
+     điều đó bằng ảnh và địa chỉ. Bỏ nút Chỉ đường — thanh trên đã dính sẵn một
+     nút y hệt, cách đó chưa tới một màn. Còn lại một nút Xem món, và hai gạch
+     giá đứng ở chỗ dễ đọc nhất. */
+  .hero-sub,.hero-map{display:none;}
+  .hero-cta{flex-direction:column;gap:8px;margin-top:16px;}
+  .hero-cta .btn{width:100%;justify-content:center;padding:11px 8px;font-size:15px;}
+  .hero-tick{display:block;list-style:none;margin:16px 0 0;padding:0;}
+  .hero-tick li{font-size:13.5px;color:var(--chu);margin-top:9px;line-height:1.35;}
   .hero-tick li::before{content:"✓ ";color:var(--rau);}
-  .hero-g{display:grid;grid-template-rows:1fr 1fr;gap:10px;}
+  .hero-tick .num{font-size:17px;color:var(--accent);}
+  /* Cột trái ngắn đi thì cột ảnh co theo — chặn sàn để hai món còn ra hình món. */
+  .hero-g{display:grid;grid-template-rows:1fr 1fr;gap:10px;min-height:330px;}
   .hero-g figure{position:relative;margin:0;border-radius:12px;overflow:hidden;
                  background:var(--mat);}
   .hero-g img{width:100%;height:100%;object-fit:cover;}
