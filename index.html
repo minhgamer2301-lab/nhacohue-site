@@ -74,24 +74,47 @@
       <a class="btn btn-s btn-sm" href="tel:0934063144">Gọi</a>
       <a class="btn btn-p btn-sm" href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Hu%E1%BB%87%2C%20E1A%20C%C6%B0%20X%C3%A1%20Ph%C3%BA%20L%C3%A2m%20B%2C%20Ph%C3%BA%20L%C3%A2m%2C%20TP.HCM">Chỉ đường</a>
     </div>
-  </div>
-  <nav class="tabs" aria-label="Trang">
-    <div class="in">
+    <nav class="tabs" aria-label="Trang">
       <a class="tab" href="index.html" aria-current="page">Trang chủ</a>
       <a class="tab" href="thuc-don.html">Thực đơn</a>
       <a class="tab" href="chuyen-quan.html">Chuyện quán</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-  <img class="hero-img" src="img/bia-hai-quan.webp" alt="Mâm bún đậu và mâm bánh xèo của nhà Cô Huệ" width="2000" height="667">
+  <!-- Mốc 861px trong <source>: máy điện thoại ẩn dải bìa bằng CSS, nhưng ảnh
+       ẩn bằng display:none vẫn bị tải. Để srcset sau mốc thì mobile chỉ nhận
+       fallback 1px, không tốn 233KB. -->
+  <picture>
+    <source media="(min-width:861px)" srcset="img/bia-hai-quan.webp">
+    <img class="hero-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Mâm bún đậu và mâm bánh xèo của nhà Cô Huệ" width="2000" height="667">
+  </picture>
   <img class="hero-mk" src="img/wordmark-co-hue.webp" alt="Cô Huệ" width="640" height="238">
   <div class="hero-t in">
-    <p>Hai quán, đối diện nhau trong Cư xá Phú Lâm B. Một bên bún đậu, một bên bánh xèo — cùng một nhà nấu.</p>
-    <div class="hero-cta">
-      <a class="btn btn-p" href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Hu%E1%BB%87%2C%20E1A%20C%C6%B0%20X%C3%A1%20Ph%C3%BA%20L%C3%A2m%20B%2C%20Ph%C3%BA%20L%C3%A2m%2C%20TP.HCM">Chỉ đường tới quán</a>
-      <a class="btn btn-s" href="#mon">Xem món</a>
+    <div class="hero-w">
+      <p class="hero-eye">Cư xá Phú Lâm B</p>
+      <h1>Hai quán, đối diện nhau, cùng một nhà nấu.</h1>
+      <p>Một bên bún đậu, một bên bánh xèo. Rau tươi mỗi ngày, mắm pha tại quán.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Hu%E1%BB%87%2C%20E1A%20C%C6%B0%20X%C3%A1%20Ph%C3%BA%20L%C3%A2m%20B%2C%20Ph%C3%BA%20L%C3%A2m%2C%20TP.HCM">Chỉ đường tới quán</a>
+        <a class="btn btn-s" href="#mon">Xem món</a>
+      </div>
+      <ul class="hero-tick">
+        <li>Mẹt 1 người từ <span class="num">45.000</span></li>
+        <li>Rau tươi mỗi ngày</li>
+        <li><span class="num">20 năm</span> tay nghề bếp</li>
+      </ul>
+    </div>
+    <div class="hero-g">
+      <figure>
+        <img src="img/ta-la-3-nguoi.webp" alt="Mẹt tá lả bún đậu" width="760" height="570" loading="lazy" decoding="async">
+        <figcaption>Bún đậu · từ <span class="num">45K</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/banh-xeo-gap-doi.webp" alt="Bánh xèo gập đôi trên đĩa" width="760" height="570" loading="lazy" decoding="async">
+        <figcaption>Bánh xèo · <span class="num">01/08</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -104,7 +127,7 @@
   </div>
 </section>
 
-<section class="sec in">
+<section class="sec in rong">
   <div class="sec-h">
     <div class="lbl">Hai bếp</div>
     <h2>Qua đường là tới bếp còn lại</h2>
@@ -159,7 +182,7 @@
   </div>
 </section>
 
-<section class="sec in" id="mon">
+<section class="sec in rong" id="mon">
   <div class="sec-h">
     <div class="lbl">Món</div>
     <h2>Bày ra thì thế này</h2>
@@ -167,19 +190,19 @@
 
   <div class="luoi-h"><h3>Bên bún đậu</h3><em>sáu loại chả để chọn, mắm tôm pha mỗi ngày</em></div>
   <div class="luoi">
-    <figure class="mon"><img src="img/bun-dau-1-nguoi.webp" alt="Bún đậu 1 người" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bún đậu 1 người</span><b class="num">45.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/cha-com.webp" alt="Chả cốm" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả cốm</span><b class="num">30.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/cha-cua.webp" alt="Chả cua" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả cua</span><b class="num">35.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/nem-chua-ran.webp" alt="Nem chua rán" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Nem chua</span><b class="num">35.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/cha-oc.webp" alt="Chả ốc" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả ốc</span><b class="num">35.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/cha-muc.webp" alt="Chả mực" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả mực</span><b class="num">50.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/bun-dau-1-nguoi.webp" alt="Bún đậu 1 người" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bún đậu 1 người</span><b class="num">45.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/cha-com.webp" alt="Chả cốm" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả cốm</span><b class="num">30.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/cha-cua.webp" alt="Chả cua" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả cua</span><b class="num">35.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/nem-chua-ran.webp" alt="Nem chua rán" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Nem chua</span><b class="num">35.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/cha-oc.webp" alt="Chả ốc" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả ốc</span><b class="num">35.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/cha-muc.webp" alt="Chả mực" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Chả mực</span><b class="num">50.000</b></figcaption></figure>
   </div>
 
   <div class="luoi-h bx" style="margin-top:34px;"><h3>Bên bánh xèo</h3><em>đổ nóng tại chỗ, mỗi phần kèm sẵn một phần rau</em></div>
   <div class="luoi">
-    <figure class="mon"><img src="img/banh-xeo-gap-doi.webp" alt="Bánh xèo gập đôi" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bánh xèo thường</span><b class="num">50.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/banh-khot-thap-cam.webp" alt="Bánh khọt thập cẩm" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bánh khọt thập cẩm</span><b class="num">55.000</b></figcaption></figure>
-    <figure class="mon"><img src="img/rau-song.webp" alt="Rổ rau sống ăn kèm" width="520" height="390" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Thêm một phần rau</span><b class="num">10.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/banh-xeo-gap-doi.webp" alt="Bánh xèo gập đôi" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bánh xèo thường</span><b class="num">50.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/banh-khot-thap-cam.webp" alt="Bánh khọt thập cẩm" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Bánh khọt thập cẩm</span><b class="num">55.000</b></figcaption></figure>
+    <figure class="mon"><img src="img/rau-song.webp" alt="Rổ rau sống ăn kèm" width="760" height="570" loading="lazy" decoding="async"><figcaption class="mon-t"><span>Thêm một phần rau</span><b class="num">10.000</b></figcaption></figure>
   </div>
 </section>
 

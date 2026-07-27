@@ -77,14 +77,18 @@ html,body{margin:0;padding:0;background:var(--nen);}
 
 .bar{position:sticky;top:0;z-index:30;background:var(--nen);
      border-bottom:1px solid var(--vien);}
-.bar>.in{display:flex;align-items:center;justify-content:space-between;
-         gap:14px;height:60px;}
-.bar img{height:30px;width:auto;}
-.bar-r{display:flex;gap:9px;align-items:center;}
+/* Lưới hai hàng thay cho hai khối flex xếp chồng: hàng 1 logo + nút, hàng 2 tab.
+   Nav nằm TRONG .in (không phải sibling) để màn rộng kéo được cả ba cụm lên
+   cùng một dòng chỉ bằng cách đổi grid-template — xem @media min-width:1100px. */
+.bar>.in{display:grid;grid-template-columns:auto 1fr;grid-template-rows:60px 42px;
+         align-items:center;column-gap:14px;}
+.bar img{height:30px;width:auto;grid-area:1/1;}
+.bar-r{display:flex;gap:9px;align-items:center;grid-area:1/2;justify-self:end;}
 
-/* hàng thứ hai của thanh — hai tab, không JS */
-.tabs{border-top:1px solid var(--vien);}
-.tabs .in{display:flex;gap:24px;align-items:stretch;height:42px;}
+/* hàng thứ hai của thanh — ba tab, không JS. Margin âm bù padding của .in để
+   vạch kẻ trên vẫn trải hết bề ngang màn như hồi nav còn nằm ngoài. */
+.tabs{grid-area:2/1/3/3;display:flex;gap:24px;align-items:stretch;
+      border-top:1px solid var(--vien);margin:0 -22px;padding:0 22px;}
 .tab{display:flex;align-items:center;font-size:15px;font-weight:600;
      text-decoration:none;color:var(--chu-phu);border-bottom:2px solid transparent;}
 .tab:hover{color:var(--chu);}
@@ -111,8 +115,13 @@ html,body{margin:0;padding:0;background:var(--nen);}
          width:min(320px,66%);height:auto;
          filter:drop-shadow(0 3px 10px rgba(0,0,0,.28));}
 .hero-t{text-align:center;padding:12px 0 34px;}
+.hero-t h1{margin:0;font-size:26px;line-height:1.25;}
 .hero-t p{margin:10px auto 0;max-width:36ch;color:var(--chu-phu);font-size:17px;}
 .hero-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+/* Ba mảnh của bố cục hai cột — chỉ dựng ở khổ điện thoại (xem @media max-width:860px).
+   Ở khổ rộng hero vẫn là dải ảnh 3:1 + wordmark, nên ẩn: eyebrow lặp địa điểm đã có
+   trong câu dẫn, ba gạch lặp dải ba trụ ngay dưới, cặp ảnh lặp dải bìa. */
+.hero-eye,.hero-tick,.hero-g{display:none;}
 
 .tru{border-top:1px solid var(--vien);border-bottom:1px solid var(--vien);
      background:var(--mat);}
@@ -260,19 +269,96 @@ html,body{margin:0;padding:0;background:var(--nen);}
   .bai p{font-size:17px;}
 }
 @media (max-width:860px){
-  .bar>.in{height:54px;}
-  .tabs .in{height:38px;gap:20px;}
+  .bar>.in{grid-template-rows:54px 38px;}
+  .tabs{gap:20px;}
   .tab{font-size:14px;}
   .hai{grid-template-columns:1fr;gap:14px;}
   .giua{flex-direction:row;padding:2px 0;}
   .giua .duong{height:2px;width:auto;background:repeating-linear-gradient(
       to right,var(--vien) 0 9px,transparent 9px 18px);}
   .giua .chu{writing-mode:horizontal-tb;}
-  /* ảnh 3:1 mà khung điện thoại cao -> crop ngang nhiều; kéo về phía mâm bún đậu
-     thay vì để giữa (giữa là khoảng gỗ trống) */
-  .hero-img{object-position:30% 46%;}
-  .hero-mk{margin-top:-40px;width:min(250px,72%);}
+  /* ══ Hero hai cột (27/07) ═════════════════════════════════════════════════
+     Trước đó khổ điện thoại chở nguyên dải bìa 3:1: ảnh ăn hết màn đầu, wordmark
+     đè lên ảnh, chữ và hai nút bị đẩy xuống dưới nếp gấp, rồi thanh dính đáy lặp
+     lại đúng hai nút đó. Đổi thành: chữ bên trái, cột phải chia đôi — trên mẹt
+     bún đậu, dưới đĩa bánh xèo. Cả cụm (chữ + hai món + hai nút) lọt một màn.
+     Dải bìa và wordmark ẩn ở đây; <picture> ở phần thân để mốc 861px nên máy
+     điện thoại KHÔNG tải file bìa 233KB nữa.
+     Ẩn ảnh phải viết .pg .hero-img: .pg img{display:block} ở đầu file đặc hiệu
+     hơn .hero-img trần (0,1,1 vs 0,1,0) nên rule trần bị đè, ảnh vẫn hiện. */
+  .pg .hero-img,.pg .hero-mk{display:none;}
+  .hero::after{display:none;}
+  .hero-t{text-align:left;padding:16px 0 18px;
+          display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:12px;}
+  .hero-eye{display:block;margin:0 0 8px;font-size:11px;letter-spacing:1.2px;
+            text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .hero-t h1{font-size:25px;line-height:1.18;}
+  .hero-t p{margin:10px 0 0;font-size:13px;line-height:1.55;}
+  .hero-cta{flex-direction:column;gap:8px;margin-top:14px;}
+  .hero-cta .btn{width:100%;justify-content:center;padding:10px 8px;font-size:14px;}
+  .hero-tick{display:block;list-style:none;margin:14px 0 0;padding:0;}
+  .hero-tick li{font-size:12px;color:var(--chu-phu);margin-top:5px;}
+  .hero-tick li::before{content:"✓ ";color:var(--rau);}
+  .hero-g{display:grid;grid-template-rows:1fr 1fr;gap:10px;}
+  .hero-g figure{position:relative;margin:0;border-radius:12px;overflow:hidden;
+                 background:var(--mat);}
+  .hero-g img{width:100%;height:100%;object-fit:cover;}
+  .hero-g figcaption{position:absolute;left:8px;bottom:8px;font-size:11px;
+                     color:var(--kem-sang);background:rgba(43,36,25,.62);
+                     border-radius:999px;padding:4px 10px;}
+  /* Ba gạch trong hero nói đúng ba điều của dải ba trụ — để cả hai là lặp trong
+     cùng một màn, nên ở khổ điện thoại chỉ giữ bản trong hero. */
+  .tru{display:none;}
   .dock{display:flex;}
+}
+/* ══ Màn rộng (laptop trở lên) ══════════════════════════════════════════════
+   Trước 27/07 trang chỉ có hai nấc: mobile và không-mobile. Trên laptop nó vẫn
+   là bố cục điện thoại phóng to — một cột giữa màn, hero ăn hết màn đầu, lưới
+   món thì ngược lại: auto-fit rải thành 6 ô ảnh 168px cỡ con tem.
+   Nấc này KHÔNG phải bản riêng cho laptop (hai file = nguồn đôi), chỉ là tầng
+   thứ ba của cùng một template. Mốc 1000px chứ không phải 1280: iPad ngang đời
+   cũ (1024) rơi đúng vào đây, mà ở đó bố cục cũ rải lưới thành 5 ô ảnh 190px. */
+@media (min-width:1000px){
+  /* Thanh trên gộp một hàng: logo trái · tab giữa · nút phải. Bớt 42px sticky. */
+  .bar>.in{grid-template-columns:auto 1fr auto;grid-template-rows:64px;}
+  .tabs{grid-area:1/2;justify-self:center;border-top:0;margin:0;padding:0;gap:30px;}
+  .bar-r{grid-area:1/3;}
+
+  /* Hero đóng khung 1280 thay vì tràn mép. Tràn mép ở khổ 1512 thì khung cao
+     34vw = 514px và ảnh 3:1 bị crop dọc — cắt vào mép hai mâm. Đóng khung lại
+     thì ảnh về đúng tỉ lệ gốc (không crop tí nào) mà còn thấp hơn ~90px, đủ để
+     cả cụm hero + dải ba trụ lọt màn đầu 900px. KHÔNG đè chữ lên ảnh: hai mâm
+     chiếm gần hết khung, khoảng gỗ trống chỉ là dải hẹp ở giữa. */
+  .hero{max-width:1280px;margin:0 auto;--hero-h:calc(min(1280px,100vw)/3);}
+  .hero-img,.hero::after{border-radius:16px;}
+  .hero-mk{margin-top:-52px;width:min(300px,30%);}
+  .hero-t{padding:10px 0 28px;}
+  .hero-t p{font-size:18px;}
+  .hero-cta{margin-top:16px;}
+
+  /* Chữ giữ khổ 1080 (dài hơn là mỏi mắt), ảnh thì cho thở ra 1280. */
+  .in.rong{max-width:1280px;}
+  .quan-img{height:260px;}
+  .hai{grid-template-columns:1fr 72px 1fr;}
+
+  /* 3 cột thay cho auto-fit. Bán đồ ăn thì ảnh to là bán hàng. */
+  .luoi{grid-template-columns:repeat(3,1fr);gap:20px;}
+  .mon img{height:240px;}
+  .mon-t{padding:12px 15px 14px;}
+  .mon-t span,.mon-t b{font-size:16px;}
+
+  /* Hai thẻ địa chỉ: auto-fit chia 1080 thành 3 track, hai thẻ dồn về trái để
+     hở một khoảng bên phải. Khoá cứng hai cột cho cân. */
+  .ghe{grid-template-columns:1fr 1fr;gap:20px;}
+
+  /* Thực đơn: hai bếp nằm cạnh nhau, không phải xếp chồng. Trong mỗi bếp thì
+     bảng giá về một cột — cột đã hẹp còn chia đôi nữa thì tên món dài bị ép. */
+  .men{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+  .men .gia{grid-template-columns:1fr;}
+  .men>.bg{margin-bottom:0;}
+
+  .the-bai{grid-template-columns:180px 1fr;}
+  .the-bai img{width:180px;height:132px;}
 }
 @media (prefers-reduced-motion:reduce){
   .btn{transition:none;}
