@@ -29,17 +29,20 @@ bằng `git diff`, ưng thì commit + push, Pages tự deploy.
 ## Có gì trong đây
 
 ```
-index.html    trang duy nhất — sinh tự động
+index.html    trang chủ — sinh tự động
+thuc-don.html bảng giá hai quán; món có ảnh thì bấm tên là ảnh mở ra (không JS)
+chuyen-quan*  trang danh sách blog quán + một file cho mỗi bài
 style.css     font brand + toàn bộ CSS — sinh tự động
-img/          14 ảnh webp, đặt tên theo món
+img/          21 ảnh webp, đặt tên theo món
 fonts/        6 subset woff2 (Be Vietnam Pro + Oswald, latin + vietnamese)
 og-*.jpg      ảnh hiện khi chia sẻ link lên Facebook/Zalo (để JPEG, nhiều nơi không đọc webp)
 favicon-*.png icon tab trình duyệt
 ```
 
-## Sau này muốn thêm blog quán
+## Blog quán
 
-Không dựng khung rỗng chờ bài. Khi đã có **bốn năm bài thật trong tay** thì chuyển sang Astro —
+Đã mở 27/07 với bài đầu tiên (chữ nằm ở `website/blog/*.md` trong vault, không nằm trong HTML).
+Khi kho bài dày lên **bốn năm bài** thì tính chuyện chuyển sang Astro —
 cấu trúc hiện tại port sang được, `style.css` dùng lại nguyên, không phải viết lại chữ.
 Blog quán do vai Marketer viết (bán hàng cho quán), khác blog hành trình Amadeus — hai thứ,
 hai tên miền.
