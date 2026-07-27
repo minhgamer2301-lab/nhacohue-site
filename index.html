@@ -85,9 +85,12 @@
 <section class="hero">
   <!-- Mốc 861px trong <source>: máy điện thoại ẩn dải bìa bằng CSS, nhưng ảnh
        ẩn bằng display:none vẫn bị tải. Để srcset sau mốc thì mobile chỉ nhận
-       fallback 1px, không tốn 233KB. -->
+       fallback 1px, không tốn 233KB.
+       Trần 999px thêm 27/07 cùng lúc với hero hai cột khổ máy tính: từ 1000px
+       trở lên dải bìa cũng ẩn, không chặn trần thì máy tính vẫn tải đủ 233KB
+       cho một ảnh không ai nhìn thấy. Dải bìa giờ chỉ sống trong 861-999px. -->
   <picture>
-    <source media="(min-width:861px)" srcset="img/bia-hai-quan.webp">
+    <source media="(min-width:861px) and (max-width:999px)" srcset="img/bia-hai-quan.webp">
     <img class="hero-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Mâm bún đậu và mâm bánh xèo của nhà Cô Huệ" width="2000" height="667">
   </picture>
   <img class="hero-mk" src="img/wordmark-co-hue.webp" alt="Cô Huệ" width="640" height="238" loading="lazy" decoding="async">
