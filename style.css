@@ -1,0 +1,227 @@
+/* Sinh bởi _brand/web/build_site.py — ĐỪNG sửa tay ở đây.
+   Sửa landing-template.html trong vault rồi build lại. */
+@font-face{
+  font-family:'Be Vietnam Pro';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(fonts/be-vietnam-pro-400-1.woff2) format('woff2');
+  unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face{
+  font-family:'Be Vietnam Pro';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url(fonts/be-vietnam-pro-400-2.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Be Vietnam Pro';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url(fonts/be-vietnam-pro-600-1.woff2) format('woff2');
+  unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face{
+  font-family:'Be Vietnam Pro';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url(fonts/be-vietnam-pro-600-2.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Oswald';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url(fonts/oswald-600-1.woff2) format('woff2');
+  unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face{
+  font-family:'Oswald';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url(fonts/oswald-600-2.woff2) format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root{
+  --kem:#F6E8CE; --kem-sang:#FBF3E2; --do-dat:#C94A2A; --xanh-rau:#2E6B3A;
+  --mam-tom:#6B546B; --tre-moc:#D6B485; --muc:#3D3226;
+  --nen:var(--kem); --mat:var(--kem-sang); --chu:var(--muc); --chu-phu:var(--mam-tom);
+  --vien:#E0CBA0; --accent:var(--do-dat); --rau:var(--xanh-rau);
+  --sans:"Be Vietnam Pro","Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  --so:"Oswald","Be Vietnam Pro","Segoe UI",system-ui,sans-serif;
+  --wrap:1080px;
+}
+/* KHOÁ CỨNG bảng màu kem — Minh chốt 27/07. KHÔNG thêm lại nhánh
+   prefers-color-scheme:dark: bảng màu Cô Huệ là kem–đỏ đất–xanh rau, bản tối
+   trước đây chỉ là đảo màu máy móc và chọi với mọi ảnh món chụp nền sáng. */
+:root{color-scheme:light;}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--nen);}
+.pg{background:var(--nen);color:var(--chu);font-family:var(--sans);
+    font-size:17px;line-height:1.65;margin:0;padding:0;}
+.pg img{max-width:100%;display:block;}
+.pg a{color:inherit;}
+.in{max-width:var(--wrap);margin:0 auto;padding:0 22px;}
+.pg h1,.pg h2,.pg h3{text-wrap:balance;margin:0;font-weight:600;line-height:1.2;}
+.lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+     color:var(--chu-phu);font-weight:600;}
+.num{font-family:var(--so);font-variant-numeric:tabular-nums;font-weight:600;}
+
+.bar{position:sticky;top:0;z-index:30;background:var(--nen);
+     border-bottom:1px solid var(--vien);}
+.bar>.in{display:flex;align-items:center;justify-content:space-between;
+         gap:14px;height:60px;}
+.bar img{height:30px;width:auto;}
+.bar-r{display:flex;gap:9px;align-items:center;}
+
+/* hàng thứ hai của thanh — hai tab, không JS */
+.tabs{border-top:1px solid var(--vien);}
+.tabs .in{display:flex;gap:24px;align-items:stretch;height:42px;}
+.tab{display:flex;align-items:center;font-size:15px;font-weight:600;
+     text-decoration:none;color:var(--chu-phu);border-bottom:2px solid transparent;}
+.tab:hover{color:var(--chu);}
+.tab[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent);}
+.tab:focus-visible{outline:3px solid var(--rau);outline-offset:-3px;}
+
+.btn{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+     padding:11px 20px;font-size:15px;font-weight:600;text-decoration:none;
+     border:1.5px solid var(--accent);transition:transform .15s,filter .15s;}
+.btn-p{background:var(--accent);color:#FFF6E6;}
+.btn-s{background:transparent;color:var(--accent);}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px);}
+.btn:focus-visible{outline:3px solid var(--rau);outline-offset:2px;}
+.btn-sm{padding:8px 15px;font-size:14px;}
+
+/* ảnh nguồn 3:1 — chiều cao bám sát 34vw để crop tối thiểu, không cắt cụt hai mâm */
+.hero{position:relative;--hero-h:clamp(300px,34vw,560px);}
+.hero-img{width:100%;height:var(--hero-h);object-fit:cover;object-position:center 46%;}
+/* dải tối ở đáy ảnh (KHÔNG phải đáy section): wordmark luôn đọc được */
+.hero::after{content:"";position:absolute;left:0;right:0;top:0;height:var(--hero-h);
+             pointer-events:none;
+             background:linear-gradient(to bottom,transparent 60%,rgba(20,14,8,.5));}
+.hero-mk{display:block;margin:-58px auto 0;position:relative;z-index:2;
+         width:min(320px,66%);height:auto;
+         filter:drop-shadow(0 3px 10px rgba(0,0,0,.28));}
+.hero-t{text-align:center;padding:12px 0 34px;}
+.hero-t p{margin:10px auto 0;max-width:36ch;color:var(--chu-phu);font-size:17px;}
+.hero-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+
+.tru{border-top:1px solid var(--vien);border-bottom:1px solid var(--vien);
+     background:var(--mat);}
+.tru .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;
+         align-items:center;padding-top:16px;padding-bottom:16px;}
+.tru b{color:var(--rau);font-weight:600;}
+.tru span{font-size:15px;color:var(--chu-phu);}
+
+.sec{padding:52px 0;}
+.sec-h{text-align:center;margin-bottom:28px;}
+.sec-h h1,.sec-h h2{font-size:clamp(24px,3.6vw,32px);}
+.sec-h p{color:var(--chu-phu);margin:8px auto 0;max-width:44ch;font-size:16px;}
+
+.hai{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch;}
+.quan{background:var(--mat);border:1px solid var(--vien);border-radius:16px;
+      overflow:hidden;display:flex;flex-direction:column;}
+.quan-img{width:100%;height:216px;object-fit:cover;}
+.quan-b{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.quan h3{font-size:23px;color:var(--rau);}
+.quan.bx h3{color:var(--accent);}
+.quan-meta{font-size:14.5px;color:var(--chu-phu);line-height:1.55;}
+.quan-cach{font-size:14.5px;color:var(--chu-phu);font-style:italic;}
+.quan-mon{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;
+          border-top:1px dashed var(--vien);padding-top:13px;}
+.quan-mon li{display:flex;justify-content:space-between;gap:12px;font-size:15.5px;}
+.quan-mon .g{color:var(--accent);}
+.quan-act{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:6px;}
+.mo{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);
+    border-radius:999px;padding:3px 11px;align-self:flex-start;}
+
+.giua{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.giua .duong{flex:1;width:2px;background:repeating-linear-gradient(
+    to bottom,var(--vien) 0 9px,transparent 9px 18px);}
+.giua .chu{writing-mode:vertical-rl;font-size:12px;letter-spacing:.2em;
+           text-transform:uppercase;color:var(--chu-phu);white-space:nowrap;font-weight:600;}
+
+.luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;}
+/* figure có margin mặc định 40px hai bên — Artifact reset hộ, host thường thì không */
+.mon{margin:0;background:var(--mat);border:1px solid var(--vien);border-radius:13px;overflow:hidden;}
+.mon img{width:100%;height:150px;object-fit:cover;}
+.mon-t{padding:10px 13px 12px;display:flex;justify-content:space-between;
+       align-items:baseline;gap:8px;}
+.mon-t span{font-size:15px;}
+.mon-t b{color:var(--accent);font-weight:600;font-size:15px;}
+.luoi-h{display:flex;align-items:baseline;gap:12px;margin:0 0 15px;}
+.luoi-h h3{font-size:19px;color:var(--rau);}
+.luoi-h.bx h3{color:var(--accent);}
+.luoi-h em{font-style:normal;font-size:14px;color:var(--chu-phu);}
+
+.chuyen{background:var(--mat);border-top:1px solid var(--vien);
+        border-bottom:1px solid var(--vien);}
+.chuyen .in{max-width:720px;text-align:center;padding-top:52px;padding-bottom:52px;}
+.chuyen blockquote{margin:16px 0 0;font-size:clamp(18px,2.5vw,22px);line-height:1.6;}
+.chuyen figcaption{margin-top:14px;font-size:14px;color:var(--chu-phu);}
+
+.ghe{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px;}
+.diachi{background:var(--mat);border:1px solid var(--vien);border-radius:14px;padding:20px;
+        display:flex;flex-direction:column;gap:9px;}
+.diachi h3{font-size:18px;color:var(--rau);}
+.diachi.bx h3{color:var(--accent);}
+.diachi dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:15px;}
+.diachi dt{color:var(--chu-phu);}
+.diachi dd{margin:0;}
+.diachi a.tel{color:var(--accent);text-decoration:none;font-weight:600;}
+
+.bg{border:1px solid var(--vien);border-radius:13px;background:var(--mat);
+    margin-bottom:12px;overflow:hidden;}
+.bg>summary{cursor:pointer;padding:15px 20px;font-weight:600;font-size:17px;
+            list-style:none;display:flex;justify-content:space-between;
+            align-items:center;gap:12px;}
+.bg>summary::-webkit-details-marker{display:none;}
+.bg>summary::after{content:"+";font-family:var(--so);font-size:23px;
+                   color:var(--accent);line-height:1;}
+.bg[open]>summary::after{content:"\2013";}
+.bg>summary:focus-visible{outline:3px solid var(--rau);outline-offset:-3px;}
+.bg-b{padding:0 20px 18px;}
+.bg-b h4{margin:15px 0 5px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+         color:var(--chu-phu);font-weight:600;}
+.bg-b>p{margin:13px 0 0;font-size:14px;color:var(--chu-phu);}
+.gia{list-style:none;margin:0;padding:0;columns:2;column-gap:26px;}
+.gia li{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;
+        padding:5px 0;border-bottom:1px dotted var(--vien);break-inside:avoid;}
+@media (max-width:560px){.gia{columns:1;}}
+.them{margin:14px 0 0;text-align:center;font-size:15px;color:var(--chu-phu);}
+
+.chan{text-align:center;padding:34px 0 46px;color:var(--chu-phu);font-size:14px;}
+.chan img{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;}
+
+.dock{position:sticky;bottom:0;z-index:30;display:none;gap:9px;padding:10px 16px;
+      background:var(--nen);border-top:1px solid var(--vien);}
+.dock .btn{flex:1;justify-content:center;}
+
+@media (max-width:860px){
+  .bar>.in{height:54px;}
+  .tabs .in{height:38px;gap:20px;}
+  .tab{font-size:14px;}
+  .hai{grid-template-columns:1fr;gap:14px;}
+  .giua{flex-direction:row;padding:2px 0;}
+  .giua .duong{height:2px;width:auto;background:repeating-linear-gradient(
+      to right,var(--vien) 0 9px,transparent 9px 18px);}
+  .giua .chu{writing-mode:horizontal-tb;}
+  /* ảnh 3:1 mà khung điện thoại cao -> crop ngang nhiều; kéo về phía mâm bún đậu
+     thay vì để giữa (giữa là khoảng gỗ trống) */
+  .hero-img{object-position:30% 46%;}
+  .hero-mk{margin-top:-40px;width:min(250px,72%);}
+  .dock{display:flex;}
+}
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none;}
+  .btn:hover{transform:none;}
+}
