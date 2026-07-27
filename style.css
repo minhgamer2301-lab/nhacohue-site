@@ -199,6 +199,29 @@ html,body{margin:0;padding:0;background:var(--nen);}
 @media (max-width:560px){.gia{columns:1;}}
 .them{margin:14px 0 0;text-align:center;font-size:15px;color:var(--chu-phu);}
 
+/* Chuyện quán — trang danh sách (.ds/.the-bai) + trang bài (.bai). Bài viết là
+   chữ đọc lâu, nên khổ hẹp hơn phần còn lại của site và dòng thưa hơn. */
+.ds{display:flex;flex-direction:column;gap:14px;max-width:720px;margin:0 auto;}
+.the-bai{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;
+         background:var(--mat);border:1px solid var(--vien);border-radius:14px;
+         overflow:hidden;text-decoration:none;}
+.the-bai img{width:132px;height:112px;object-fit:cover;}
+.the-bai .t{padding:14px 18px 14px 0;}
+.the-bai h3{font-size:18px;margin:0 0 6px;}
+.the-bai p{margin:0;font-size:15px;color:var(--chu-phu);line-height:1.55;}
+.the-bai:hover h3{color:var(--accent);}
+.the-bai:focus-visible{outline:3px solid var(--rau);outline-offset:2px;}
+
+.bai{max-width:660px;margin:0 auto;}
+.bai h1{font-size:clamp(25px,4vw,34px);margin-bottom:10px;}
+.bai-meta{font-size:14px;color:var(--chu-phu);margin:0 0 22px;}
+.bai-anh{width:100%;height:auto;border-radius:14px;border:1px solid var(--vien);
+         margin-bottom:26px;}
+.bai p{margin:0 0 19px;font-size:17.5px;line-height:1.78;}
+.bai-ve{display:inline-block;margin-top:26px;font-size:15px;font-weight:600;
+        color:var(--accent);text-decoration:none;}
+.bai-ve:hover{text-decoration:underline;}
+
 .chan{text-align:center;padding:34px 0 46px;color:var(--chu-phu);font-size:14px;}
 .chan img{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;}
 
@@ -206,6 +229,12 @@ html,body{margin:0;padding:0;background:var(--nen);}
       background:var(--nen);border-top:1px solid var(--vien);}
 .dock .btn{flex:1;justify-content:center;}
 
+@media (max-width:560px){
+  .the-bai{grid-template-columns:100px 1fr;}
+  .the-bai img{width:100px;height:100px;}
+  .the-bai .t{padding:12px 14px 12px 0;}
+  .bai p{font-size:17px;}
+}
 @media (max-width:860px){
   .bar>.in{height:54px;}
   .tabs .in{height:38px;gap:20px;}
