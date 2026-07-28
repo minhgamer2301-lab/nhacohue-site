@@ -82,6 +82,21 @@
   </div>
 </header>
 
+<!-- Dải chấm khối: chỉ trang chủ mới có (nằm NGOÀI @bar/@ghe/@chan nên thực đơn
+     và chuyện quán không mượn phải). Phải đứng ngay sau thanh trên trong DOM —
+     nó dính ở top:102/64px, đặt chỗ khác thì dính sai chỗ. Thứ tự sáu chấm phải
+     khớp thứ tự sáu khối ở dưới. -->
+<nav class="rail" aria-label="Khối trên trang">
+  <div class="rail-in">
+    <a class="rail-i" href="#dau" aria-current="true"><span class="rail-d"></span><span class="rail-l">Trang chủ</span></a>
+    <a class="rail-i" href="#hai-bep"><span class="rail-d"></span><span class="rail-l">Hai bếp</span></a>
+    <a class="rail-i" href="#mon"><span class="rail-d"></span><span class="rail-l">Món</span></a>
+    <a class="rail-i" href="#nguoi-nau"><span class="rail-d"></span><span class="rail-l">Người nấu</span></a>
+    <a class="rail-i" href="#ghe-quan"><span class="rail-d"></span><span class="rail-l">Ghé quán</span></a>
+    <a class="rail-i" href="#bang-gia"><span class="rail-d"></span><span class="rail-l">Bảng giá</span></a>
+  </div>
+</nav>
+
 <section class="hero" id="dau">
   <!-- Mốc 861px trong <source>: máy điện thoại ẩn dải bìa bằng CSS, nhưng ảnh
        ẩn bằng display:none vẫn bị tải. Để srcset sau mốc thì mobile chỉ nhận
@@ -260,17 +275,6 @@
   <a class="btn btn-s btn-sm" href="tel:0934063144">Gọi bún đậu</a>
   <a class="btn btn-p btn-sm" href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Hu%E1%BB%87%2C%20E1A%20C%C6%B0%20X%C3%A1%20Ph%C3%BA%20L%C3%A2m%20B%2C%20Ph%C3%BA%20L%C3%A2m%2C%20TP.HCM">Chỉ đường</a>
 </div>
-
-<!-- Rail chấm: chỉ trang chủ mới có (khối này nằm NGOÀI @bar/@ghe/@chan nên
-     thực đơn và chuyện quán không mượn). Thứ tự phải khớp thứ tự khối ở trên. -->
-<nav class="rail" aria-label="Khối trên trang">
-  <a class="rail-i" href="#dau" aria-current="true"><span class="rail-l">Trang chủ</span><span class="rail-d"></span></a>
-  <a class="rail-i" href="#hai-bep"><span class="rail-l">Hai bếp</span><span class="rail-d"></span></a>
-  <a class="rail-i" href="#mon"><span class="rail-l">Món</span><span class="rail-d"></span></a>
-  <a class="rail-i" href="#nguoi-nau"><span class="rail-l">Người nấu</span><span class="rail-d"></span></a>
-  <a class="rail-i" href="#ghe-quan"><span class="rail-l">Ghé quán</span><span class="rail-d"></span></a>
-  <a class="rail-i" href="#bang-gia"><span class="rail-l">Bảng giá</span><span class="rail-d"></span></a>
-</nav>
 
 </div>
 

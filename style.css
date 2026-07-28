@@ -439,42 +439,50 @@ html,body{margin:0;padding:0;background:var(--nen);}
   .the-bai{grid-template-columns:180px 1fr;}
   .the-bai img{width:180px;height:132px;}
 }
-/* ══ Rail chấm khối (28/07) ════════════════════════════════════════════════
-   Cột chấm dọc mép phải trang chủ: cuộn tới khối nào thì chấm đó sáng, click
-   chấm thì nhảy tới khối. Tắt JS vẫn dùng được — mỗi chấm là <a href="#...">,
-   phần JS chỉ lo chuyện sáng/tắt.
-   Mốc 1400px, tính ra chứ không chọn cho tròn: các dải .in.rong ăn 1280px nên
-   mép nội dung nằm ở vw/2+640, còn rail chiếm 44px sát phải. Muốn chừa 14px hở
-   thì cần vw ≥ 1396 — đo ở 1366 thì rail đè lên ảnh lưới món đúng 9px. Laptop
-   1366 vì vậy KHÔNG có rail, và đó là chủ ý.
-   Nhãn chữ cũng phải nằm NGOÀI dòng (position:absolute), chỉ hiện khi rê chuột,
-   để cột chấm còn đúng 26px thay vì hơn 100px. Điện thoại KHÔNG có rail — ở đó
-   đã có thanh dính đáy chở đúng hai việc cần làm, thêm cột chấm nữa là rối.
-   scroll-margin-top bù thanh trên dính 64px, để tiêu đề khối không chui xuống
-   dưới thanh khi nhảy tới. */
-.pg section[id]{scroll-margin-top:84px;}
+/* ══ Dải chấm khối (28/07) ═════════════════════════════════════════════════
+   Dải ngang dính ngay dưới thanh trên ở trang chủ: mỗi chấm một khối, cuộn tới
+   khối nào thì chấm đó sáng, click thì nhảy tới. Tắt JS vẫn dùng được — mỗi
+   chấm là <a href="#...">, phần JS chỉ lo chuyện sáng/tắt.
+   Bản đầu là cột chấm dọc mép phải, đã bỏ: các dải .in.rong ăn 1280px nên cột
+   dọc cần vw ≥ 1396 mới có lề mà đứng — đo ở 1366 thì nó đè lên ảnh lưới món
+   9px. Nằm ngang thì dải sống trong khổ chữ, không cần lề trống, nên chạy từ
+   861px: laptop 1366 và iPad ngang đều có.
+   Dưới 861px KHÔNG có dải: ở đó thanh trên đã cao 98px (hai hàng), chồng thêm
+   một dải dính nữa là ăn hết một phần tư màn điện thoại, mà dưới đáy đã có
+   thanh dính chở đúng hai việc cần làm.
+   top của sticky phải khớp chiều cao thanh trên theo từng nấc, không có số nào
+   dùng chung được: 861-999px thanh cao 103px (hai hàng 60+42 cộng 1px viền
+   dưới), từ 1000px gộp còn một hàng 65px. Đo bằng getBoundingClientRect chứ
+   đừng cộng nhẩm từ grid-template-rows — quên 1px viền thì dải hở một sợi chỉ
+   đúng chỗ dễ thấy nhất. scroll-margin-top cộng thêm chiều cao dải (45px). */
+.pg section[id]{scroll-margin-top:110px;}
 html{scroll-behavior:smooth;}
 .rail{display:none;}
-@media (min-width:1400px){
-  .rail{display:flex;flex-direction:column;align-items:center;gap:11px;
-        position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:25;}
-  .rail-i{position:relative;display:flex;align-items:center;justify-content:center;
-          text-decoration:none;width:26px;height:22px;}
-  .rail-l{position:absolute;right:100%;top:50%;margin-top:-13px;
-          font-size:12.5px;line-height:1;color:var(--chu-phu);white-space:nowrap;
-          background:var(--mat);border:1px solid var(--vien);border-radius:999px;
-          padding:5px 10px;opacity:0;transform:translateX(4px);pointer-events:none;
-          transition:opacity .16s ease,transform .16s ease;}
-  .rail-d{width:9px;height:9px;border-radius:50%;background:transparent;
+@media (min-width:861px){
+  .pg section[id]{scroll-margin-top:158px;}
+  .rail{display:block;position:sticky;top:103px;z-index:29;
+        background:var(--nen);border-bottom:1px solid var(--vien);}
+  .rail-in{max-width:var(--wrap);margin:0 auto;padding:0 22px;
+           display:flex;align-items:center;gap:26px;height:44px;overflow-x:auto;
+           scrollbar-width:none;}
+  .rail-in::-webkit-scrollbar{display:none;}
+  .rail-i{display:flex;align-items:center;gap:7px;text-decoration:none;
+          white-space:nowrap;padding:4px 0;}
+  .rail-d{width:8px;height:8px;border-radius:50%;background:transparent;flex:none;
           border:1.5px solid var(--vien);
           transition:background .16s ease,border-color .16s ease,transform .16s ease;}
-  .rail-i:hover .rail-l,.rail-i:focus-visible .rail-l{opacity:1;transform:none;}
+  .rail-l{font-size:13.5px;line-height:1;color:var(--chu-phu);
+          transition:color .16s ease;}
   .rail-i:hover .rail-d{border-color:var(--accent);}
+  .rail-i:hover .rail-l{color:var(--accent);}
   .rail-i[aria-current="true"] .rail-d{background:var(--accent);border-color:var(--accent);
-                                       transform:scale(1.35);}
-  /* Nhãn chỉ hiện khi rê chuột, kể cả chấm đang sáng: nhãn nổi đè lên chữ của
-     trang, để hiện thường trực thì nó là vết bẩn ngồi giữa màn suốt buổi. */
+                                       transform:scale(1.25);}
+  .rail-i[aria-current="true"] .rail-l{color:var(--accent);font-weight:600;}
   .rail-i:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+}
+@media (min-width:1000px){
+  .pg section[id]{scroll-margin-top:120px;}
+  .rail{top:65px;}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
