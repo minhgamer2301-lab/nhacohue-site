@@ -40,97 +40,226 @@
   </div>
 </header>
 
+<!-- Trang thực đơn, bản dựng lại 28/07. Trước đó nó là bảng giá hai cột trong
+     hai khối gấp/mở, ảnh món giấu sau một cú chạm. Từ khi bỏ tờ phụ ảnh A4
+     (quyết định 27/07) thì trang này là kênh gợi-thèm-bằng-ảnh DUY NHẤT của
+     quán, nên ảnh phải hiện sẵn, không bắt khách đoán món nào đáng mở.
+
+     Ba tầng, xếp theo sức bán: mẹt/combo thẻ ảnh lớn -> món gọi thêm lưới ảnh
+     vuông -> món chưa có ảnh thành dải giá gọn. KHÔNG độn ảnh món khác vào chỗ
+     món chưa chụp (Tá Lả 4 Người, Bánh Xèo Đặc Biệt) — dải gạch đứt là chỗ của
+     chúng cho tới khi có ảnh thật.
+
+     Vẫn 0 JavaScript như cả site: hai quán nằm cùng trang, chuyển bằng thẻ <a>
+     neo, không phải tab bấm. -->
+
 <section class="sec in rong">
   <div class="sec-h">
     <div class="lbl">Thực đơn</div>
     <h1>Toàn bộ menu hai quán</h1>
-    <p>Món nào có mũi tên thì chạm vào tên để xem ảnh.</p>
+    <p>Ảnh chụp món thật đang bán tại quán.</p>
+    <p class="nhay">Nhảy tới: <a href="#bun-dau">Bún Đậu</a> · <a href="#banh-xeo">Bánh Xèo</a></p>
   </div>
 
-  <div class="men">
-  <details class="bg" open>
-    <summary>Bún Đậu Cô Huệ</summary>
-    <div class="bg-b">
-      <h4>Combo</h4>
-      <ul class="gia">
-        <li class="co-anh"><details class="md"><summary><span>Bún Đậu 1 Người</span><b class="num">45.000</b></summary>
-          <img src="img/bun-dau-1-nguoi.webp" alt="Mẹt bún đậu một người: bún lá, đậu chiên, thịt luộc, rau sống và bát mắm tôm" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Tá Lả 2 Người</span><b class="num">90.000</b></summary>
-          <img src="img/ta-la-2-nguoi.webp" alt="Mẹt tá lả hai người xếp quanh bát mắm tôm" width="900" height="675" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Tá Lả 3 Người</span><b class="num">135.000</b></summary>
-          <img src="img/ta-la-3-nguoi.webp" alt="Mẹt tá lả ba người bày trên lá chuối, đủ thịt luộc, lòng, dồi, đậu chiên và rau" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li><span>Tá Lả 4 Người</span><b class="num">180.000</b></li>
-      </ul>
-      <h4>Món thêm</h4>
-      <ul class="gia">
-        <li class="co-anh"><details class="md"><summary><span>Bún</span><b class="num">5.000</b></summary>
-          <img src="img/bun.webp" alt="Đĩa bún lá cắt khối, sợi trắng ngà ép chặt" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li><span>Rau</span><b class="num">10.000</b></li>
-        <li><span>Đậu Chiên</span><b class="num">10.000</b></li>
-        <li><span>Lòng Chiên</span><b class="num">25.000</b></li>
-        <li class="co-anh"><details class="md"><summary><span>Dồi Sụn</span><b class="num">25.000</b></summary>
-          <img src="img/doi-sun.webp" alt="Đĩa dồi sụn cắt khúc chéo, mặt cắt lộ nhân băm lấm tấm rau thơm và cà rốt" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Thịt Luộc</span><b class="num">25.000</b></summary>
-          <img src="img/thit-luoc.webp" alt="Đĩa thịt luộc thái lát xếp xoè, mỗi lát thấy rõ nạc, mỡ và bì" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Tai</span><b class="num">25.000</b></summary>
-          <img src="img/tai.webp" alt="Đĩa tai heo luộc thái lát mỏng cong, lõi sụn trong mờ ở giữa" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Cốm</span><b class="num">30.000</b></summary>
-          <img src="img/cha-com.webp" alt="Đĩa chả cốm chiên vàng, cắt đôi thấy ruột trắng ngà" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Nem Chua</span><b class="num">35.000</b></summary>
-          <img src="img/nem-chua-ran.webp" alt="Đĩa nem chua rán vỏ vàng giòn xếp chồng" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Ốc</span><b class="num">35.000</b></summary>
-          <img src="img/cha-oc.webp" alt="Đĩa chả ốc, miếng dẹt lẫn mộc nhĩ và lá xanh" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Sụn</span><b class="num">35.000</b></summary>
-          <img src="img/cha-sun.webp" alt="Đĩa chả sụn chiên, cắt lát thấy sụn giòn bên trong" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Cua</span><b class="num">35.000</b></summary>
-          <img src="img/cha-cua.webp" alt="Đĩa chả cua miếng tròn dẹt màu cam gạch, vài lát cắt lộ ruột trắng" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Mực</span><b class="num">50.000</b></summary>
-          <img src="img/cha-muc.webp" alt="Đĩa chả mực chiên vàng ruộm, thớ mực rõ ở mặt cắt" width="760" height="570" loading="lazy" decoding="async"></details></li>
-      </ul>
-      <h4>Món kèm</h4>
-      <ul class="gia">
-        <li class="co-anh"><details class="md"><summary><span>Bánh Tôm Tây Hồ</span><b class="num">45.000</b></summary>
-          <img src="img/banh-tom-tay-ho.webp" alt="Đĩa bánh tôm Tây Hồ, tôm nguyên con nằm trên lớp bột chiên vàng" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li><span>Chả Giò Bắc Thảo</span><b class="num">45.000</b></li>
-        <li><span>Chả Giò Rế Tôm Thịt</span><b class="num">45.000</b></li>
-        <li><span>Thịt Luộc Rau Rừng</span><b class="num">50.000</b></li>
-        <li class="co-anh"><details class="md"><summary><span>Ốc Bươu Nhồi Thịt</span><b class="num">50.000</b></summary>
-          <img src="img/oc-buu-nhoi-thit.webp" alt="Đĩa ốc bươu nhồi thịt, nhân cuốn lá gừng cài trong vỏ ốc" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Nem Cua Bể</span><b class="num">50.000</b></summary>
-          <img src="img/nem-cua-be.webp" alt="Đĩa nem cua bể vuông, vỏ chiên vàng, cắt miếng vừa gắp" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Ram Tôm Đất</span><b class="num">50.000</b></summary>
-          <img src="img/cha-ram-tom-dat.webp" alt="Đĩa chả ram tôm đất cuốn nhỏ, vỏ chiên giòn" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li><span>Cá Tai Tượng Chiên Xù</span><b class="num">250.000</b></li>
-      </ul>
-    </div>
-  </details>
+  <!-- ═══════════ BÚN ĐẬU ═══════════ -->
+  <h2 class="quan-h" id="bun-dau">Bún Đậu Cô Huệ</h2>
 
-  <details class="bg" open>
-    <summary>Bánh Xèo Cô Huệ</summary>
-    <div class="bg-b">
-      <ul class="gia">
-        <li><span>Bánh Xèo Đặc Biệt</span><b class="num">70.000</b></li>
-        <li class="co-anh"><details class="md"><summary><span>Bánh Xèo Thường</span><b class="num">50.000</b></summary>
-          <img src="img/banh-xeo-gap-doi.webp" alt="Bánh xèo gập đôi, rìa ren giòn, ăn kèm rau sống" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Bánh Khọt Thập Cẩm (10 cái)</span><b class="num">55.000</b></summary>
-          <img src="img/banh-khot-thap-cam.webp" alt="Mẹt bánh khọt mười cái ba loại nhân, kèm chén nước mắm" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Nem Cua Bể</span><b class="num">50.000</b></summary>
-          <img src="img/nem-cua-be.webp" alt="Đĩa nem cua bể vuông, vỏ chiên vàng, cắt miếng vừa gắp" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Chả Ram Tôm Đất</span><b class="num">50.000</b></summary>
-          <img src="img/cha-ram-tom-dat.webp" alt="Đĩa chả ram tôm đất cuốn nhỏ, vỏ chiên giòn" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li class="co-anh"><details class="md"><summary><span>Ốc Bươu Nhồi Thịt</span><b class="num">50.000</b></summary>
-          <img src="img/oc-buu-nhoi-thit.webp" alt="Đĩa ốc bươu nhồi thịt, nhân cuốn lá gừng cài trong vỏ ốc" width="760" height="570" loading="lazy" decoding="async"></details></li>
-        <li><span>Gỏi Trộn Đu Đủ</span><b class="num">50.000</b></li>
-        <li><span>Chả Giò Rế Tôm Thịt</span><b class="num">45.000</b></li>
-        <li class="co-anh"><details class="md"><summary><span>Thêm Một Phần Rau</span><b class="num">10.000</b></summary>
-          <img src="img/rau-song.webp" alt="Rổ rau sống ăn kèm bánh xèo" width="760" height="570" loading="lazy" decoding="async"></details></li>
-      </ul>
-      <p>Mỗi phần bánh xèo kèm sẵn một phần rau và nước chấm trong giá.</p>
+  <div class="kh"><h3>Mẹt &amp; combo</h3><span class="gach"></span>
+    <span class="ghi">Cỡ nào cũng 45.000 một người</span></div>
+
+  <div class="combo">
+    <article class="cb">
+      <span class="nhan">Khách gọi nhiều nhất</span>
+      <img class="cb-a" src="img/ta-la-2-nguoi.webp" alt="Mẹt tá lả hai người xếp quanh bát mắm tôm" width="900" height="675">
+      <div class="cb-b">
+        <div class="cb-t"><h4>Tá Lả 2 Người</h4><b class="cb-g num">90.000</b></div>
+        <p class="cb-d">Đậu chiên · chả cốm · tai · thịt luộc · dồi sụn · nem chua · chả cua</p>
+        <p class="cb-n">Đủ bảy món cho hai người</p>
+      </div>
+    </article>
+
+    <article class="cb">
+      <span class="nhan">Khách hay gọi</span>
+      <img class="cb-a" src="img/bun-dau-1-nguoi.webp" alt="Mẹt bún đậu một người: bún lá, đậu chiên, thịt luộc, rau sống và bát mắm tôm" width="760" height="570" loading="lazy" decoding="async">
+      <div class="cb-b">
+        <div class="cb-t"><h4>Bún Đậu 1 Người</h4><b class="cb-g num">45.000</b></div>
+        <p class="cb-d">Đậu chiên · chả cốm · dồi sụn · tai · thịt luộc</p>
+        <p class="cb-n">Ăn một mình vừa đủ</p>
+      </div>
+    </article>
+
+    <article class="cb">
+      <img class="cb-a" src="img/ta-la-3-nguoi.webp" alt="Mẹt tá lả ba người bày trên lá chuối, đủ thịt luộc, lòng, dồi, đậu chiên và rau" width="760" height="570" loading="lazy" decoding="async">
+      <div class="cb-b">
+        <div class="cb-t"><h4>Tá Lả 3 Người</h4><b class="cb-g num">135.000</b></div>
+        <p class="cb-d">Đậu chiên · chả cốm · tai · thịt luộc · dồi sụn · nem chua · chả cua</p>
+        <p class="cb-n">Mẹt lớn, cùng bảy món</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="cb-them">
+    <div class="t">
+      <h4>Tá Lả 4 Người</h4>
+      <p>Cùng bảy món, mẹt to nhất — cho cả bàn</p>
     </div>
-  </details>
+    <b class="num">180.000</b>
+  </div>
+
+  <div class="kh"><h3>Gọi thêm</h3><span class="gach"></span>
+    <span class="ghi">Thêm vào mẹt hoặc ăn riêng</span></div>
+
+  <div class="luoi-m">
+    <article class="mn">
+      <span class="nhan-s">Hay gọi</span>
+      <img class="mn-a" src="img/t-nem-chua-ran.webp" alt="Đĩa nem chua rán vỏ vàng giòn xếp chồng" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Nem Chua</h4><b class="mn-g num">35.000</b></div>
+    </article>
+    <article class="mn">
+      <span class="nhan-s">Hay gọi</span>
+      <img class="mn-a" src="img/t-cha-com.webp" alt="Đĩa chả cốm chiên vàng, cắt đôi thấy ruột trắng ngà" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Cốm</h4><b class="mn-g num">30.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/thit-luoc.webp" alt="Đĩa thịt luộc thái lát xếp xoè, mỗi lát thấy rõ nạc, mỡ và bì" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Thịt Luộc</h4><b class="mn-g num">25.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/doi-sun.webp" alt="Đĩa dồi sụn cắt khúc chéo, mặt cắt lộ nhân băm lấm tấm rau thơm và cà rốt" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Dồi Sụn</h4><b class="mn-g num">25.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/tai.webp" alt="Đĩa tai heo luộc thái lát mỏng cong, lõi sụn trong mờ ở giữa" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Tai</h4><b class="mn-g num">25.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/t-cha-cua.webp" alt="Đĩa chả cua miếng tròn dẹt màu cam gạch, vài lát cắt lộ ruột trắng" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Cua</h4><b class="mn-g num">35.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/t-cha-oc.webp" alt="Đĩa chả ốc, miếng dẹt lẫn mộc nhĩ và lá xanh" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Ốc</h4><b class="mn-g num">35.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/cha-sun.webp" alt="Đĩa chả sụn chiên, cắt lát thấy sụn giòn bên trong" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Sụn</h4><b class="mn-g num">35.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/t-cha-muc.webp" alt="Đĩa chả mực chiên vàng ruộm, thớ mực rõ ở mặt cắt" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Mực</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/bun.webp" alt="Đĩa bún lá cắt khối, sợi trắng ngà ép chặt" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Bún</h4><b class="mn-g num">5.000</b></div>
+    </article>
+  </div>
+
+  <div class="tho">
+    <ul>
+      <li><span>Rau</span><i class="cham"></i><b class="num">10.000</b></li>
+      <li><span>Đậu Chiên</span><i class="cham"></i><b class="num">10.000</b></li>
+      <li><span>Lòng Chiên</span><i class="cham"></i><b class="num">25.000</b></li>
+    </ul>
+  </div>
+
+  <div class="kh"><h3>Món kèm</h3><span class="gach"></span>
+    <span class="ghi">Gọi riêng cho bàn đông</span></div>
+
+  <div class="luoi-m">
+    <article class="mn">
+      <span class="nhan-s">Hay gọi</span>
+      <img class="mn-a" src="img/oc-buu-nhoi-thit.webp" alt="Đĩa ốc bươu nhồi thịt, nhân cuốn lá gừng cài trong vỏ ốc" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Ốc Bươu Nhồi Thịt</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/nem-cua-be.webp" alt="Đĩa nem cua bể vuông, vỏ chiên vàng, cắt miếng vừa gắp" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Nem Cua Bể</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/cha-ram-tom-dat.webp" alt="Đĩa chả ram tôm đất cuốn nhỏ, vỏ chiên giòn" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Ram Tôm Đất</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/banh-tom-tay-ho.webp" alt="Đĩa bánh tôm Tây Hồ, tôm nguyên con nằm trên lớp bột chiên vàng" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Bánh Tôm Tây Hồ</h4><b class="mn-g num">45.000</b></div>
+    </article>
+  </div>
+
+  <div class="tho">
+    <ul>
+      <li><span>Chả Giò Bắc Thảo</span><i class="cham"></i><b class="num">45.000</b></li>
+      <li><span>Chả Giò Rế Tôm Thịt</span><i class="cham"></i><b class="num">45.000</b></li>
+      <li><span>Thịt Luộc Rau Rừng</span><i class="cham"></i><b class="num">50.000</b></li>
+      <li><span>Cá Tai Tượng Chiên Xù</span><i class="cham"></i><b class="num">250.000</b></li>
+    </ul>
   </div>
 
   <p class="them">Quán có nước giải khát.</p>
+
+  <!-- ═══════════ BÁNH XÈO ═══════════ -->
+  <h2 class="quan-h" id="banh-xeo">Bánh Xèo Cô Huệ</h2>
+
+  <div class="kh"><h3>Bánh xèo &amp; bánh khọt</h3><span class="gach"></span>
+    <span class="ghi">Kèm sẵn rau và nước chấm</span></div>
+
+  <div class="combo">
+    <article class="cb">
+      <img class="cb-a" src="img/banh-xeo-gap-doi.webp" alt="Bánh xèo gập đôi, rìa ren giòn, ăn kèm rau sống" width="760" height="570" loading="lazy" decoding="async">
+      <div class="cb-b">
+        <div class="cb-t"><h4>Bánh Xèo Thường</h4><b class="cb-g num">50.000</b></div>
+        <p class="cb-d">Rìa ren giòn, gập đôi, kèm rau sống và nước chấm</p>
+        <p class="cb-n">Một người ăn no</p>
+      </div>
+    </article>
+
+    <article class="cb">
+      <img class="cb-a" src="img/banh-khot-thap-cam.webp" alt="Mẹt bánh khọt mười cái ba loại nhân, kèm chén nước mắm" width="760" height="570" loading="lazy" decoding="async">
+      <div class="cb-b">
+        <div class="cb-t"><h4>Bánh Khọt Thập Cẩm</h4><b class="cb-g num">55.000</b></div>
+        <p class="cb-d">Mười cái, ba loại nhân, kèm chén nước mắm</p>
+        <p class="cb-n">Hợp chia đôi</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="cb-them">
+    <div class="t">
+      <h4>Bánh Xèo Đặc Biệt</h4>
+      <p>Bản đầy đặn hơn của bánh xèo thường</p>
+    </div>
+    <b class="num">70.000</b>
+  </div>
+
+  <div class="kh"><h3>Gọi thêm</h3><span class="gach"></span>
+    <span class="ghi">Ăn kèm hoặc gọi riêng</span></div>
+
+  <div class="luoi-m">
+    <article class="mn">
+      <img class="mn-a" src="img/nem-cua-be.webp" alt="Đĩa nem cua bể vuông, vỏ chiên vàng, cắt miếng vừa gắp" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Nem Cua Bể</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/cha-ram-tom-dat.webp" alt="Đĩa chả ram tôm đất cuốn nhỏ, vỏ chiên giòn" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Chả Ram Tôm Đất</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/oc-buu-nhoi-thit.webp" alt="Đĩa ốc bươu nhồi thịt, nhân cuốn lá gừng cài trong vỏ ốc" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Ốc Bươu Nhồi Thịt</h4><b class="mn-g num">50.000</b></div>
+    </article>
+    <article class="mn">
+      <img class="mn-a" src="img/t-rau-song.webp" alt="Rổ rau sống ăn kèm bánh xèo" width="440" height="440" loading="lazy" decoding="async">
+      <div class="mn-b"><h4>Thêm Phần Rau</h4><b class="mn-g num">10.000</b></div>
+    </article>
+  </div>
+
+  <div class="tho">
+    <ul>
+      <li><span>Gỏi Trộn Đu Đủ</span><i class="cham"></i><b class="num">50.000</b></li>
+      <li><span>Chả Giò Rế Tôm Thịt</span><i class="cham"></i><b class="num">45.000</b></li>
+    </ul>
+  </div>
+
+  <p class="them">Mỗi phần bánh xèo kèm sẵn một phần rau và nước chấm trong giá.</p>
 </section>
 
 <section class="sec in" id="ghe-quan">

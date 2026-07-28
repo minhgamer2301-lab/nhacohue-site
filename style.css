@@ -213,48 +213,92 @@ html,body{margin:0;padding:0;background:var(--nen);}
 .diachi a.tel{color:var(--accent);text-decoration:none;font-weight:600;
               display:inline-block;padding:12px 6px;margin:-12px -6px;}
 
-.bg{border:1px solid var(--vien);border-radius:13px;background:var(--mat);
-    margin-bottom:12px;overflow:hidden;}
-.bg>summary{cursor:pointer;padding:15px 20px;font-weight:600;font-size:17px;
-            list-style:none;display:flex;justify-content:space-between;
-            align-items:center;gap:12px;}
-.bg>summary::-webkit-details-marker{display:none;}
-.bg>summary::after{content:"+";font-family:var(--so);font-size:23px;
-                   color:var(--accent);line-height:1;}
-.bg[open]>summary::after{content:"\2013";}
-.bg>summary:focus-visible{outline:3px solid var(--rau);outline-offset:-3px;}
-.bg-b{padding:0 20px 18px;}
-.bg-b h4{margin:15px 0 5px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-         color:var(--chu-phu);font-weight:600;}
-.bg-b>p{margin:13px 0 0;font-size:14px;color:var(--chu-phu);}
-/* Lưới hai cột thay cho columns:2 — dòng món giờ mở ra được (xem .md ngay dưới),
-   mà multicol thì một dòng nở ra là cả cột dồn lại, đọc nhảy chỗ. Grid chỉ cao
-   thêm đúng ô đó. Đổi lại: thứ tự đọc thành trái-phải, không phải trên-xuống. */
-.gia{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;
-     column-gap:26px;align-items:start;}
-/* padding 8 chứ không 5: dòng nào cũng có thể là nút chạm, 5px ra ~34px cao —
-   dưới ngưỡng ngón tay. 8px ra ~42px, và dòng có ảnh với dòng trơn cao bằng nhau. */
-.gia li{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;
-        padding:8px 0;border-bottom:1px dotted var(--vien);}
-@media (max-width:560px){.gia{grid-template-columns:1fr;}}
+/* ══ Trang thực đơn (dựng lại 28/07) ══════════════════════════════════════════
+   Bản cũ là hai khối gấp/mở chứa bảng giá hai cột, ảnh giấu sau <details> từng
+   dòng. Nó tiết kiệm byte thật, nhưng từ khi bỏ tờ phụ ảnh A4 (27/07) thì trang
+   này gánh việc gợi thèm — mà ảnh giấu thì không gợi được gì. Giờ ba tầng theo
+   sức bán: .combo (thẻ ảnh lớn) -> .luoi-m (ô vuông) -> .tho (dải giá cho món
+   chưa có ảnh). Vẫn 0 JS: hai quán cùng trang, chuyển bằng thẻ <a> neo. */
+.pg h4{margin:0;font-weight:600;line-height:1.25;}
+.nhay{margin:14px 0 0;font-size:15px;color:var(--chu-phu);}
+.nhay a{color:var(--accent);font-weight:600;text-decoration:none;
+        padding:10px 4px;margin:-10px -4px;display:inline-block;}
+.nhay a:hover{text-decoration:underline;}
 
-/* Món có ảnh: chạm vào dòng thì ảnh mở ra ngay dưới. Không JS — vẫn là <details>,
-   cùng cơ chế với .bg. Ảnh nằm trong details đóng nên trình duyệt chưa tải,
-   loading="lazy" do build gắn: mở trang không tốn thêm byte nào. */
-.gia li.co-anh{display:block;padding:0;border-bottom:0;}
-.md>summary{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
-            padding:8px 0;cursor:pointer;list-style:none;
-            border-bottom:1px dotted var(--vien);}
-.md>summary::-webkit-details-marker{display:none;}
-.md>summary>span::after{content:"";display:inline-block;width:0;height:0;margin-left:7px;
-            vertical-align:middle;border-left:4px solid transparent;
-            border-right:4px solid transparent;border-top:5px solid var(--accent);
-            transition:transform .15s;}
-.md[open]>summary>span::after{transform:rotate(180deg);}
-.md>summary:hover{color:var(--accent);}
-.md>summary:focus-visible{outline:3px solid var(--rau);outline-offset:-2px;}
-.md img{width:100%;height:auto;border-radius:11px;border:1px solid var(--vien);
-        margin:9px 0 13px;}
+/* Tên quán: xanh rau cho bún đậu, đỏ đất cho bánh xèo — cùng cặp màu với thẻ
+   quán ở trang chủ, để khách nhận ra đang đọc phần nào mà không cần đọc chữ. */
+.quan-h{font-size:clamp(22px,3vw,27px);margin:46px 0 0;color:var(--rau);
+        scroll-margin-top:120px;}   /* 120: thanh trên dính cao 104px + thở */
+#banh-xeo{color:var(--accent);}
+
+.kh{display:flex;align-items:baseline;gap:14px;margin:26px 0 15px;}
+.kh h3{font-size:19px;white-space:nowrap;}
+.kh .gach{flex:1;height:1px;background:var(--vien);}
+.kh .ghi{font-size:14.5px;color:var(--chu-phu);white-space:nowrap;}
+
+.combo{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
+.cb{background:var(--mat);border:1px solid var(--vien);border-radius:16px;
+    overflow:hidden;display:flex;flex-direction:column;position:relative;}
+.cb-a{aspect-ratio:4/3;width:100%;height:auto;object-fit:cover;}
+.cb-b{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.cb-t{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.cb-t h4{font-size:17.5px;}
+.cb-g{font-size:21px;color:var(--accent);}
+.cb-d{font-size:13.5px;color:var(--chu-phu);line-height:1.5;margin:0;}
+.cb-n{font-size:12.5px;color:var(--rau);font-weight:600;margin:auto 0 0;}
+
+/* Món CHƯA có ảnh chụp (Tá Lả 4 Người, Bánh Xèo Đặc Biệt): dải ngang gạch đứt.
+   Đừng mượn ảnh mẹt cỡ khác dán vào cho đủ ô — món trong ảnh phải là món thật;
+   và đừng để ô ảnh trống, một khoảng kem cao 200px trông như ảnh vỡ. */
+.cb-them{display:flex;align-items:center;gap:18px;margin-top:14px;padding:15px 20px;
+  background:repeating-linear-gradient(45deg,rgba(214,180,133,.22) 0 2px,transparent 2px 12px),
+             var(--mat);
+  border:1px dashed var(--vien);border-radius:14px;}
+.cb-them .t{flex:1;min-width:0;}
+.cb-them h4{font-size:17px;}
+.cb-them p{margin:3px 0 0;font-size:13.5px;color:var(--chu-phu);}
+.cb-them>b{font-size:21px;color:var(--accent);white-space:nowrap;}
+
+/* Nhãn lấy từ mix bán thật trên POS (đọc 1–25/07), không phải cảm tính. Chỉ nói
+   thứ hạng, không nói số — số bán là dữ liệu trong nhà. */
+.nhan{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:600;
+      letter-spacing:.09em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+      background:rgba(201,74,42,.93);color:#FFF6E6;}
+.nhan-s{position:absolute;top:9px;left:9px;z-index:2;font-size:10px;font-weight:600;
+        letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
+        background:rgba(201,74,42,.93);color:#FFF6E6;}
+
+/* .luoi-m, KHÔNG phải .luoi — trang chủ đã có .luoi riêng (ô cao cố định 150px,
+   cột tối thiểu 168). Đặt trùng tên thì khối sau đè khối trước và lưới món ở
+   trang chủ co lại theo, mà lỗi đó không lộ ra khi chỉ mở trang thực đơn. */
+.luoi-m{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+.mn{background:var(--mat);border:1px solid var(--vien);border-radius:13px;
+    overflow:hidden;display:flex;flex-direction:column;position:relative;}
+.mn-a{aspect-ratio:1/1;width:100%;height:auto;object-fit:cover;}
+.mn-b{padding:10px 12px 12px;display:flex;align-items:baseline;
+      justify-content:space-between;gap:8px;margin-top:auto;}
+.mn-b h4{font-size:14.5px;}
+.mn-g{font-size:16px;color:var(--accent);}
+
+/* Tầng ba: món chưa chụp ảnh. Dấu chấm nối để mắt bám từ tên sang giá. */
+.tho{margin-top:16px;background:var(--mat);border:1px solid var(--vien);
+     border-radius:13px;padding:4px 18px 8px;}
+.tho ul{list-style:none;margin:0;padding:0;display:grid;
+        grid-template-columns:1fr 1fr;column-gap:30px;}
+.tho li{display:flex;align-items:baseline;gap:10px;padding:9px 0;
+        border-bottom:1px dotted var(--vien);font-size:15.5px;}
+.tho .cham{flex:1;height:0;border-bottom:1px dotted var(--vien);transform:translateY(-3px);}
+.tho b{color:var(--accent);font-size:16px;}
+@media (max-width:620px){.tho ul{grid-template-columns:1fr;}}
+/* Khổ máy tính: khoá 5 cột thay vì auto-fill. Auto-fill ở 1280px nhả ra bảy ô
+   169px — ảnh món bé bằng con tem, đúng cái bệnh mà bản dựng lại này đi chữa.
+   5 cột ra ô ~240px, ngang tầm lưới món trang chủ (cũng khoá cột ở khổ này). */
+@media (min-width:900px){.luoi-m{grid-template-columns:repeat(5,1fr);gap:16px;}}
+@media (max-width:700px){
+  .luoi-m{grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:11px;}
+  .kh .ghi{display:none;}
+  .quan-h{margin-top:38px;}
+}
 .them{margin:14px 0 0;text-align:center;font-size:15px;color:var(--chu-phu);}
 
 /* Chuyện quán — trang danh sách (.ds/.the-bai) + trang bài (.bai). Bài viết là
