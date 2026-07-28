@@ -82,7 +82,7 @@
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="dau">
   <!-- Mốc 861px trong <source>: máy điện thoại ẩn dải bìa bằng CSS, nhưng ảnh
        ẩn bằng display:none vẫn bị tải. Để srcset sau mốc thì mobile chỉ nhận
        fallback 1px, không tốn 233KB.
@@ -126,7 +126,7 @@
   </div>
 </section>
 
-<section class="sec in rong">
+<section class="sec in rong" id="hai-bep">
   <div class="sec-h">
     <div class="lbl">Hai bếp</div>
     <h2>Qua đường là tới bếp còn lại</h2>
@@ -205,7 +205,7 @@
   </div>
 </section>
 
-<section class="chuyen">
+<section class="chuyen" id="nguoi-nau">
   <figure class="in">
     <div class="lbl">Người nấu</div>
     <blockquote>“20 năm qua, cô vẫn bếp, vẫn nấu, vẫn vui — vì tin rằng ai cũng xứng đáng với một bữa ngon.”</blockquote>
@@ -213,7 +213,7 @@
   </figure>
 </section>
 
-<section class="sec in">
+<section class="sec in" id="ghe-quan">
   <div class="sec-h">
     <div class="lbl">Ghé quán</div>
     <h2>Hai địa chỉ, cùng một cư xá</h2>
@@ -261,6 +261,53 @@
   <a class="btn btn-p btn-sm" href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Hu%E1%BB%87%2C%20E1A%20C%C6%B0%20X%C3%A1%20Ph%C3%BA%20L%C3%A2m%20B%2C%20Ph%C3%BA%20L%C3%A2m%2C%20TP.HCM">Chỉ đường</a>
 </div>
 
+<!-- Rail chấm: chỉ trang chủ mới có (khối này nằm NGOÀI @bar/@ghe/@chan nên
+     thực đơn và chuyện quán không mượn). Thứ tự phải khớp thứ tự khối ở trên. -->
+<nav class="rail" aria-label="Khối trên trang">
+  <a class="rail-i" href="#dau" aria-current="true"><span class="rail-l">Trang chủ</span><span class="rail-d"></span></a>
+  <a class="rail-i" href="#hai-bep"><span class="rail-l">Hai bếp</span><span class="rail-d"></span></a>
+  <a class="rail-i" href="#mon"><span class="rail-l">Món</span><span class="rail-d"></span></a>
+  <a class="rail-i" href="#nguoi-nau"><span class="rail-l">Người nấu</span><span class="rail-d"></span></a>
+  <a class="rail-i" href="#ghe-quan"><span class="rail-l">Ghé quán</span><span class="rail-d"></span></a>
+  <a class="rail-i" href="#bang-gia"><span class="rail-l">Bảng giá</span><span class="rail-d"></span></a>
+</nav>
+
 </div>
+
+<script>
+/* Chấm nào sáng: kẻ một vạch ngang ở 45% chiều cao màn, khối cuối cùng có đỉnh
+   nằm trên vạch đó là khối đang đọc. Chọn phép tính vị trí chứ không phải
+   IntersectionObserver vì nó không có ca rỗng — cuộn vào khoảng hở giữa hai
+   khối vẫn ra đúng một khối, khỏi phải chốt bằng "giữ nguyên chấm cũ".
+   Riêng đáy trang chốt cứng khối cuối: khối cuối cộng chân trang thấp hơn nửa
+   màn nên đỉnh nó không bao giờ vượt được vạch, cuộn hết cỡ vẫn sáng nhầm.
+   Tắt JS thì rail vẫn nhảy đúng chỗ, chỉ là chấm đầu sáng suốt. */
+(function(){
+  var rail=document.querySelector('.rail');
+  if(!rail)return;
+  var muc=[],dang=rail.querySelector('[aria-current]');
+  [].forEach.call(rail.querySelectorAll('.rail-i'),function(a){
+    var el=document.getElementById(a.getAttribute('href').slice(1));
+    if(el)muc.push({a:a,el:el});
+  });
+  if(!muc.length)return;
+  function soi(){
+    var vach=window.pageYOffset+window.innerHeight*0.45,i=0;
+    for(var j=0;j<muc.length;j++){
+      if(muc[j].el.getBoundingClientRect().top+window.pageYOffset<=vach)i=j;
+    }
+    if(window.pageYOffset+window.innerHeight>=
+       document.documentElement.scrollHeight-2)i=muc.length-1;
+    var a=muc[i].a;
+    if(a===dang)return;
+    if(dang)dang.removeAttribute('aria-current');
+    a.setAttribute('aria-current','true');
+    dang=a;
+  }
+  addEventListener('scroll',soi,{passive:true});
+  addEventListener('resize',soi);
+  soi();
+})();
+</script>
 </body>
 </html>

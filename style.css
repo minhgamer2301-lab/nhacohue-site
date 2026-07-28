@@ -439,8 +439,47 @@ html,body{margin:0;padding:0;background:var(--nen);}
   .the-bai{grid-template-columns:180px 1fr;}
   .the-bai img{width:180px;height:132px;}
 }
+/* ══ Rail chấm khối (28/07) ════════════════════════════════════════════════
+   Cột chấm dọc mép phải trang chủ: cuộn tới khối nào thì chấm đó sáng, click
+   chấm thì nhảy tới khối. Tắt JS vẫn dùng được — mỗi chấm là <a href="#...">,
+   phần JS chỉ lo chuyện sáng/tắt.
+   Mốc 1400px, tính ra chứ không chọn cho tròn: các dải .in.rong ăn 1280px nên
+   mép nội dung nằm ở vw/2+640, còn rail chiếm 44px sát phải. Muốn chừa 14px hở
+   thì cần vw ≥ 1396 — đo ở 1366 thì rail đè lên ảnh lưới món đúng 9px. Laptop
+   1366 vì vậy KHÔNG có rail, và đó là chủ ý.
+   Nhãn chữ cũng phải nằm NGOÀI dòng (position:absolute), chỉ hiện khi rê chuột,
+   để cột chấm còn đúng 26px thay vì hơn 100px. Điện thoại KHÔNG có rail — ở đó
+   đã có thanh dính đáy chở đúng hai việc cần làm, thêm cột chấm nữa là rối.
+   scroll-margin-top bù thanh trên dính 64px, để tiêu đề khối không chui xuống
+   dưới thanh khi nhảy tới. */
+.pg section[id]{scroll-margin-top:84px;}
+html{scroll-behavior:smooth;}
+.rail{display:none;}
+@media (min-width:1400px){
+  .rail{display:flex;flex-direction:column;align-items:center;gap:11px;
+        position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:25;}
+  .rail-i{position:relative;display:flex;align-items:center;justify-content:center;
+          text-decoration:none;width:26px;height:22px;}
+  .rail-l{position:absolute;right:100%;top:50%;margin-top:-13px;
+          font-size:12.5px;line-height:1;color:var(--chu-phu);white-space:nowrap;
+          background:var(--mat);border:1px solid var(--vien);border-radius:999px;
+          padding:5px 10px;opacity:0;transform:translateX(4px);pointer-events:none;
+          transition:opacity .16s ease,transform .16s ease;}
+  .rail-d{width:9px;height:9px;border-radius:50%;background:transparent;
+          border:1.5px solid var(--vien);
+          transition:background .16s ease,border-color .16s ease,transform .16s ease;}
+  .rail-i:hover .rail-l,.rail-i:focus-visible .rail-l{opacity:1;transform:none;}
+  .rail-i:hover .rail-d{border-color:var(--accent);}
+  .rail-i[aria-current="true"] .rail-d{background:var(--accent);border-color:var(--accent);
+                                       transform:scale(1.35);}
+  /* Nhãn chỉ hiện khi rê chuột, kể cả chấm đang sáng: nhãn nổi đè lên chữ của
+     trang, để hiện thường trực thì nó là vết bẩn ngồi giữa màn suốt buổi. */
+  .rail-i:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+}
 @media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
   .btn{transition:none;}
   .btn:hover{transform:none;}
   .md>summary>span::after{transition:none;}
+  .rail-l,.rail-d{transition:none;}
 }
