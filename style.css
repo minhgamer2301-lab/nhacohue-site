@@ -152,6 +152,12 @@ html,body{margin:0;padding:0;background:var(--nen);}
 .hero-tru b{color:var(--rau);font-weight:600;}
 
 .sec{padding:52px 0;}
+/* .sec đứng SAU .in trong file này, mà `padding:52px 0` là shorthand nên nó ghi
+   đè luôn lề ngang 22px của .in — mọi dải nội dung chạm sát mép màn hình, rõ
+   nhất ở khổ điện thoại (thẻ món dính hai bên). Trả lại lề bằng hai thuộc tính
+   riêng, không dùng shorthand, để .sec vẫn giữ 52px trên dưới.
+   Sửa 28/07. Nếu sau này đổi padding của .sec, nhớ vẫn để lề ngang cho khối này. */
+.sec.in{padding-left:22px;padding-right:22px;}
 .sec-h{text-align:center;margin-bottom:28px;}
 .sec-h h1,.sec-h h2{font-size:clamp(24px,3.6vw,32px);}
 .sec-h p{color:var(--chu-phu);margin:8px auto 0;max-width:44ch;font-size:16px;}
@@ -181,6 +187,10 @@ html,body{margin:0;padding:0;background:var(--nen);}
            text-transform:uppercase;color:var(--chu-phu);white-space:nowrap;font-weight:600;}
 
 .luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;}
+/* Khoá hai cột ở khổ điện thoại. Trước 28/07 dải nội dung không có lề ngang nên
+   375px vừa đủ cho auto-fit nhả hai cột; trả lề 22px vào thì khổ chữ còn 331 và
+   nó tụt xuống một cột — thẻ món kéo ngang 331x150, ảnh món bẹt ra. */
+@media (max-width:560px){.luoi{grid-template-columns:1fr 1fr;}}
 /* figure có margin mặc định 40px hai bên — Artifact reset hộ, host thường thì không */
 .mon{margin:0;background:var(--mat);border:1px solid var(--vien);border-radius:13px;overflow:hidden;}
 .mon img{width:100%;height:150px;object-fit:cover;}
